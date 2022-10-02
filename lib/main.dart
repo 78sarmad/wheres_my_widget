@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgetkit/flutter_widgetkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'models/widget_data.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -62,6 +63,14 @@ class _MyAppState extends State<MyApp> {
                   ElevatedButton(
                     style: btnStyle,
                     onPressed: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      Fluttertoast.showToast(
+                        msg: "Text Updated",
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.green.shade700,
+                        textColor: Colors.white,
+                      );
+
                       WidgetKit.setItem(
                         dataKey,
                         jsonEncode(FlutterWidgetData(textController.text)),
@@ -75,9 +84,17 @@ class _MyAppState extends State<MyApp> {
                   ElevatedButton(
                     style: btnStyle,
                     onPressed: () {
+                      textController.clear();
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      Fluttertoast.showToast(
+                        msg: "Text Removed",
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.red.shade900,
+                        textColor: Colors.white,
+                      );
+
                       WidgetKit.removeItem(dataKey, appGroupId);
                       WidgetKit.reloadAllTimelines();
-                      textController.clear();
                     },
                     child: Text('Remove'),
                   ),

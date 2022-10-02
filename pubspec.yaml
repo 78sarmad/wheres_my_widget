@@ -13,6 +13,7 @@ dependencies:
 
   cupertino_icons: ^1.0.0
   flutter_widgetkit: ^1.0.3
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:
